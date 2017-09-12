@@ -208,6 +208,17 @@ class AbstractList {
 	delete(index) {
 		return BufferLazyList.from(() => { let copy = this.buffer(); delete copy[index]; return copy; });
 	}
+
+	/** Return value to be serialized as JSON
+	*
+	* For performance, this (may) return a copy of the internal array representation. As such,
+	* the result of calling this method *should not be modified*.
+	*
+	* TODO: immutable proxy?
+	*/
+	toJSON() {
+		return this.data;
+	}
 }
 
 /** Immutable Map extends AbstractMap to wrap an ES6 mutable map

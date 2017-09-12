@@ -122,4 +122,8 @@ describe('ImmutableList', () => {
         expect(ImmutableList.from(TEST_DATA).some(e => e === 13)).to.be.true;
         expect(ImmutableList.from(TEST_DATA).some(e => e === 6)).to.be.false;
     });
+
+    it('converts to JSON as a plain array', ()=>{
+        expect(JSON.stringify(ImmutableList.from(TEST_DATA))).to.equal(JSON.stringify(TEST_DATA));
+    });
 });
