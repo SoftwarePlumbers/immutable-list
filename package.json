@@ -1,6 +1,6 @@
 {
   "name": "immutable-list",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Immutable list implemementation maximally compatible with plain old array",
   "main": "src/list.js",
   "scripts": {
@@ -13,9 +13,11 @@
     "url": "git+https://github.com/softwareplumbers/immutable-list.git"
   },
   "keywords": [
-    "es6",
-    "map",
-    "immutable"
+    "list",
+    "array",
+    "immutable",
+    "class",
+    "operator"
   ],
   "author": "Jonathan Essex",
   "license": "SEE LICENSE IN LICENSE",

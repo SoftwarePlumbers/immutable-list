@@ -28,6 +28,11 @@ class AbstractList {
 		return ImmutableList.from(Array.of(...arguments));
 	}
 
+	static from(data) {
+		if (AbstractList.isList(data)) return data;
+		return new Proxy(new ImmutableList(data), HANDLER);
+	}
+
 	/** Concatenate two arrays
 	* 
 	*/
@@ -239,10 +244,7 @@ class ImmutableList extends AbstractList {
 		return this.data[Symbol.iterator]();
 	}
 
-	static from(data) {
-		if (AbstractList.isList(data)) return data;
-		return new Proxy(new ImmutableList(data), HANDLER);
-	}
+
 }
 
 /** BufferLazylist implemnents an lazily constructed immutable list.
@@ -331,5 +333,7 @@ const HANDLER = {
 		throw new TypeError('Can\'t change an immutable type');
 	}
 }
+
+ImmutableList.EMPTY = ImmutableList.from([]);
 
 module.exports = ImmutableList;
