@@ -179,6 +179,10 @@ class AbstractList {
 		return Stream.of(this).some(predicate);
 	}
 
+	toString() {
+		return '[' + Stream.of(this).join(',') + ']'
+	}
+
 	/** Get an iterator over values */
 	values() {
 		return Stream.of(this);

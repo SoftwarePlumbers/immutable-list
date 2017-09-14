@@ -126,4 +126,8 @@ describe('ImmutableList', () => {
     it('converts to JSON as a plain array', ()=>{
         expect(JSON.stringify(ImmutableList.from(TEST_DATA))).to.equal(JSON.stringify(TEST_DATA));
     });
+
+    it('has reasonable string representation', ()=>{
+        expect(ImmutableList.from(TEST_DATA).toString()).to.equal('[1,1,2,3,5,8,13,21,34,55,89]');
+    });
 });
