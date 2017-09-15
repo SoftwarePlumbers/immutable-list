@@ -1,6 +1,6 @@
 {
   "name": "immutable-list",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Immutable list implemementation maximally compatible with plain old array",
   "main": "src/list.js",
   "scripts": {

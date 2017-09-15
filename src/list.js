@@ -28,6 +28,15 @@ class AbstractList {
 		return ImmutableList.from(Array.of(...arguments));
 	}
 
+	/** Create a list from base array 
+	*
+	* List wraps supplied data - so don't change that data after supplying it to list. If data
+	* is already an immutable list, just passes through the reference. This avoids accidentally
+	* wrapping a list in a list, and is semantically valid (since a list is immutable, a reference
+	* is as good as a copy)
+	*
+	* @param data array
+	*/
 	static from(data) {
 		if (AbstractList.isList(data)) return data;
 		return new Proxy(new ImmutableList(data), HANDLER);
@@ -222,6 +231,14 @@ class AbstractList {
 	*/
 	toJSON() {
 		return this.data;
+	}
+
+	/** Build a list from JSON.
+	*
+	* Used by various libs when converting a json stream into typed objects. (see typed-patch, db-plubming-mongo)
+	*/
+	static fromJSON(data) {
+		return ImmutableList.from(data);
 	}
 }
 
