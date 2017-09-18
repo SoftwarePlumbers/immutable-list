@@ -1,6 +1,6 @@
 {
   "name": "immutable-list",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Immutable list implemementation maximally compatible with plain old array",
   "main": "src/list.js",
   "scripts": {
@@ -34,6 +34,8 @@
   },
   "dependencies": {
     "debug": "^3.0.1",
-    "iterator-plumbing": "^1.0.0"
+    "iterator-plumbing": "^1.0.2",
+    "jsdoc": "^3.5.5",
+    "mocha": "^3.5.3"
   }
 }

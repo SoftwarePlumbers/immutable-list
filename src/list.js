@@ -46,7 +46,7 @@ class AbstractList {
 	* 
 	*/
 	concat(iterable) {
-		return StreamLazyList.from(()=>Stream.of(this).concat(Stream.of(iterable)));
+		return StreamLazyList.from(()=>Stream.from(this).concat(Stream.from(iterable)));
 	}
 
 	/** Copy elements within an array 
@@ -57,7 +57,7 @@ class AbstractList {
 
 	/** Get an iterator over array entries */
 	entries() {
-		return { [Symbol.iterator] : () => Stream.of(this).entries() };
+		return { [Symbol.iterator] : () => Stream.from(this).entries() };
 	}
 
 	/** Check to see whether a function evaluates true for every element in the array
@@ -65,7 +65,7 @@ class AbstractList {
 	* @param callback {Function} function [like: (value, index) => boolean] to evaluate
 	*/
 	every(callback, thisArg) {
-		return Stream.of(this).every(callback, this);
+		return Stream.from(this).every(callback, this);
 	}
 
 	/** Fill all elements in an array with a value
@@ -84,7 +84,7 @@ class AbstractList {
 	* @param {Function} predicate
 	*/	
 	filter(predicate, thisArg) {
-		return StreamLazyList.from(()=>Stream.of(this).filter(predicate, this));	
+		return StreamLazyList.from(()=>Stream.from(this).filter(predicate, this));	
 	}
 
 	/** Find the element matching the predicate
@@ -94,7 +94,7 @@ class AbstractList {
 	* @param {Function} predicate
 	*/	
 	find(predicate, thisArg) {
-		return Stream.of(this).find(predicate, this);
+		return Stream.from(this).find(predicate, this);
 	}
 
 	/** Find the element matching the predicate
@@ -102,7 +102,7 @@ class AbstractList {
 	* method returns the index of the first element in the array that satisfies the provided testing function. Otherwise -1 is returned
 	*/
 	findIndex(predicate, thisArg) {
-		return Stream.of(this).findIndex(predicate, this);
+		return Stream.from(this).findIndex(predicate, this);
 	}
 
 	/** Execute a function for each mapped value
@@ -110,7 +110,7 @@ class AbstractList {
  	* @param callback {Function} function to execute
 	*/
 	forEach(callback, thisArg) {
-		return Stream.of(this).forEach(callback, this);
+		return Stream.from(this).forEach(callback, this);
 	}
 
 	/** Get the item for a given index
@@ -128,7 +128,7 @@ class AbstractList {
 	* @param element item to check for
 	*/
 	includes(element) {
-		return Stream.of(this).includes(element);
+		return Stream.from(this).includes(element);
 	}
 
 	/** Get index of an item in an array
@@ -146,7 +146,7 @@ class AbstractList {
 	* @param separator {String} separator between items
 	*/
 	join(separator) {
-		return Stream.of(this).join(separator);
+		return Stream.from(this).join(separator);
 	}
 
 	/** Get an iterator over keys */
@@ -169,15 +169,15 @@ class AbstractList {
 	* @returns a new Immutable list with the result of applying mapper to every element in this list
 	*/
 	map(mapper) {
-		return StreamLazyList.from(()=>Stream.of(this).map(mapper));
+		return StreamLazyList.from(()=>Stream.from(this).map(mapper));
 	}
 
 	push() {
-		return StreamLazyList.from(()=>Stream.of(this).push(...arguments));
+		return StreamLazyList.from(()=>Stream.from(this).push(...arguments));
 	}
 
 	reduce(reducer, value) {
-		return Stream.of(this).reduce(reducer, value, this);
+		return Stream.from(this).reduce(reducer, value, this);
 	}
 
 	slice(begin, end) {
@@ -185,16 +185,16 @@ class AbstractList {
 	}
 
 	some(predicate) {
-		return Stream.of(this).some(predicate);
+		return Stream.from(this).some(predicate);
 	}
 
 	toString() {
-		return '[' + Stream.of(this).join(',') + ']'
+		return '[' + Stream.from(this).join(',') + ']'
 	}
 
 	/** Get an iterator over values */
 	values() {
-		return Stream.of(this);
+		return Stream.from(this);
 	}
 
 	/** Set a value for an index.
@@ -340,8 +340,8 @@ class StreamLazyList extends AbstractList {
 	*/
 	get data() {
 		if (!this._data) { 
-			this._data = Stream.of(this).toArray();
-			this[Symbol.iterator] = ()=>Stream.of(this._data);
+			this._data = Stream.from(this).toArray();
+			this[Symbol.iterator] = ()=>Stream.from(this._data);
 		}
 		return this._data; 
 	}
